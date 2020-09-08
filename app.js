@@ -2,7 +2,7 @@
 
 Vue.component('list-element', {
     props: ['data', 'id'],
-    
+     
     template: `
         <div 
             class="list-element"
