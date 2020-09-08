@@ -1,0 +1,68 @@
+$primary-color: lighten(black, 25)
+
+@mixin primary-font
+    font-family: 'Montserrat'
+    font-size: 12pt    
+
+*
+    box-sizing: border-box
+
+body
+    padding: 0 50px 0 50px
+    margin: 0 auto
+    max-width: 900px
+    font-family: 'Montserrat'
+    color: $primary-color
+
+    
+
+.add-button
+    cursor: pointer
+    color: lighten($primary-color, 50)
+
+    &:hover
+        color: $primary-color
+
+.list-element
+    display: flex
+    align-items: start
+    margin-top: 10px
+    position: relative
+    left: 0
+
+    &:hover
+        left: -15.175px
+        width: calc(100% + 15.175px)
+
+    .delete-button
+        font-size: 20pt
+        line-height: 12pt
+        color: lighten($primary-color, 50)
+        margin: 0
+        margin-top: 4px
+        cursor: pointer
+        font-weight: 350
+
+        &:hover
+            color: $primary-color
+
+    input
+        &[type="checkbox"]
+            margin-top: 5px
+            cursor: pointer
+
+    textarea
+        @include primary-font
+        border: none
+        outline: none
+        resize: none
+        overflow: hidden
+        width: 100%
+        height: 19px
+
+        &::placeholder
+            color: lighten($primary-color, 50)
+
+        &.completed
+            text-decoration: line-through
+            color: lighten($primary-color, 50)        
