@@ -22,9 +22,9 @@
             v-bind:key="i"
             v-bind:id="i"
         ></list-element>
-        <add-button
-            v-bind:caption="'+ Новая задача'"
-        ></add-button>
+        <p 
+            class="add-button"
+            @click="addNewTodo();"> {{ addButtonCaption }} </p>
     </main>
 </body>
-</html>
+</html> 

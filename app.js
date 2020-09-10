@@ -1,40 +1,41 @@
 'use strict';
 
+/* === Компонент элемента списка === */
 Vue.component('list-element', {
     props: ['data', 'id'],
      
     template: `
         <div 
             class="list-element"
-            @mouseover="isHovered = true"
-            @mouseleave="isHovered = false"
-        >
+            v-bind:class="{ focused: isFocused || isHovered }"
+            @mouseenter="isHovered = true"
+            @mouseleave="isHovered = false">
             <p
-                v-if="isHovered"
                 class="delete-button"
-                @click="deleteTodo(id)"
-            >×</p>
+                v-if="isHovered || isFocused"
+                @click="deleteTodo(id)">×</p>
             <input 
                 type="checkbox"
                 v-model="data.isChecked"
-                @change="saveData()"
-            >
+                @change="saveData()">
             <textarea 
                 v-bind:class="{ completed: data.isChecked }"
+                v-bind:style="{ height: data.height }"
                 rows="1" 
                 placeholder="Текст задачи"
                 v-model="data.text"
+                ref="textarea"
                 @input="onTyping()"
                 @keydown.enter.prevent=""
-                ref="textarea"
-                v-bind:style="{ height: data.height }"
-            ></textarea>
+                @focus="isFocused = true"
+                @blur="isFocused = false"></textarea>
         </div>
     `,
 
     data: function () {
         return {
-            isHovered: false
+            isHovered: false,
+            isFocused: false
         }
     },
 
@@ -67,30 +68,13 @@ Vue.component('list-element', {
     }
 });
 
-Vue.component('add-button', {
-    
-    props: ['caption'],
-
-    template: `
-        <p 
-            class="add-button"
-            @click="addNewTodo();"
-        > {{ caption }} </p>
-    `,
-
-    methods: {
-        addNewTodo: function () {
-            app.addNewTodo();
-        }
-    }
-});
-
 let app = new Vue({
 
     el: '#app',
 
     data: {
-        todoList: []
+        todoList: [],
+        addButtonCaption: '+ Новая задача'
     },
 
     mounted: function () {
@@ -98,7 +82,8 @@ let app = new Vue({
             if (localStorage.getItem('todoList')) {
                 this.todoList = JSON.parse(localStorage.getItem('todoList'));
             } 
-        } catch (e) {
+        } catch (exception) {
+            console.log(`Ошибка: ${exception.name} — ${exception.message}`);
             localStorage.removeItem('todoList');
         }
     },
