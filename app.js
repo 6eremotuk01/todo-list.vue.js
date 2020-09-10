@@ -2,6 +2,7 @@
 
 /* === Компонент элемента списка === */
 Vue.component('list-element', {
+
     props: ['data', 'id'],
      
     template: `
@@ -101,9 +102,7 @@ let app = new Vue({
         },
 
         deleteTodo: function (id) {
-
             this.todoList.splice(id, 1);
-
             this.saveData();
         },
 
