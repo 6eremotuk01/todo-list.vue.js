@@ -98,7 +98,8 @@ let app = new Vue({
             if (localStorage.getItem('todoList')) {
                 this.todoList = JSON.parse(localStorage.getItem('todoList'));
             } 
-        } catch (e) {
+        } catch (exception) {
+            console.log(`Ошибка: ${exception.name} — ${exception.message}`);
             localStorage.removeItem('todoList');
         }
     },
