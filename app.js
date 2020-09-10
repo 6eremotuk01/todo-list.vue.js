@@ -19,12 +19,12 @@ Vue.component('list-element', {
                 v-model="data.isChecked"
                 @change="saveData()">
             <textarea 
-                v-bind:class="{ completed: data.isChecked }"
-                v-bind:style="{ height: data.height }"
+                ref="textarea"
                 rows="1" 
                 placeholder="Текст задачи"
+                v-bind:class="{ completed: data.isChecked }"
+                v-bind:style="{ height: data.height }"
                 v-model="data.text"
-                ref="textarea"
                 @input="onTyping()"
                 @keydown.enter.prevent=""
                 @focus="isFocused = true"
