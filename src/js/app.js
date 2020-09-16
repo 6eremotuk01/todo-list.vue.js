@@ -1,51 +1,57 @@
-'use strict';
+"use strict";
 
 /* === Компонент элемента списка === */
-Vue.component('list-element', {
+Vue.component("list-element", {
+    props: ["data", "id"],
 
-    props: ['data', 'id'],
-     
     template: `
         <div 
-            class="list-element"
-            v-bind:class="{ focused: isFocused || isHovered }"
+            class="app__list-wrapper__list-element"
+            v-bind:class="{ '--focused': isFocused || isHovered }"
             @mouseenter="isHovered = true"
             @mouseleave="isHovered = false">
-            <p
-                class="delete-button"
+            <button
+                class="app__list-wrapper__list-element__delete-button"
                 v-if="isHovered || isFocused"
-                @click="deleteTodo(id)">×</p>
-            <input 
+                @click="deleteTodo(id)"
+            >
+            
+            </button>
+            <input
+                class="app__list-wrapper__list-element__checkbox"
                 type="checkbox"
                 v-model="data.isChecked"
-                @change="saveData()">
+                @change="saveData()"
+            >
             <textarea 
-                ref="textarea"
+                class="app__list-wrapper__list-element__textarea"
                 rows="1" 
-                placeholder="Текст задачи"
-                v-bind:class="{ completed: data.isChecked }"
+                placeholder="Сделать..."
+                ref="textarea"
+                v-bind:class="{ '--completed': data.isChecked }"
                 v-bind:style="{ height: data.height }"
                 v-model="data.text"
                 @input="onTyping()"
                 @keydown.enter.prevent=""
                 @focus="isFocused = true"
-                @blur="isFocused = false"></textarea>
+                @blur="isFocused = false"
+            ></textarea>
         </div>
     `,
 
     data: function () {
         return {
             isHovered: false,
-            isFocused: false
-        }
+            isFocused: false,
+        };
     },
 
-    created: function() {
+    created: function () {
         window.onresize = this.onTyping;
     },
 
     methods: {
-        deleteTodo: function (id)  { 
+        deleteTodo: function (id) {
             app.deleteTodo(id);
         },
 
@@ -54,48 +60,44 @@ Vue.component('list-element', {
         },
 
         onTyping: function () {
+            let target = this.$refs["textarea"];
 
-            let target = this.$refs['textarea']
-
-            target.style.height = '1px';
-            this.data.height = target.style.height = (target.scrollHeight) + 'px';
+            target.style.height = "1px";
+            this.data.height = target.style.height = target.scrollHeight + "px";
 
             this.saveData();
         },
 
         addNewTodo: function (event) {
             app.addNewTodo();
-        }
-    }
+        },
+    },
 });
 
 let app = new Vue({
-
-    el: '#app',
+    el: "#app",
 
     data: {
         todoList: [],
-        addButtonCaption: '+ Новая задача'
+        addButtonCaption: "+ Новая задача",
     },
 
     mounted: function () {
         try {
-            if (localStorage.getItem('todoList')) {
-                this.todoList = JSON.parse(localStorage.getItem('todoList'));
-            } 
+            if (localStorage.getItem("todoList")) {
+                this.todoList = JSON.parse(localStorage.getItem("todoList"));
+            }
         } catch (exception) {
             console.log(`Ошибка: ${exception.name} — ${exception.message}`);
-            localStorage.removeItem('todoList');
+            localStorage.removeItem("todoList");
         }
     },
 
     methods: {
         addNewTodo: function () {
-
-            this.todoList.push({ 
-                isChecked: false, 
-                text: '',
-                height: '19px'
+            this.todoList.push({
+                isChecked: false,
+                text: "",
             });
 
             this.saveData();
@@ -108,7 +110,7 @@ let app = new Vue({
 
         saveData: function () {
             const json = JSON.stringify(this.todoList);
-            localStorage.setItem('todoList', json);
-        }
-    }
+            localStorage.setItem("todoList", json);
+        },
+    },
 });

@@ -1,0 +1,150 @@
+@import "./fonts.scss";
+@import "./normalize.css";
+
+// Mixin`ы и переменные
+$primary-color: lighten(
+    $color: black,
+    $amount: 25,
+);
+$unactive-color: lightgray;
+$button-color: lighten(
+    $color: black,
+    $amount: 50,
+);
+$font-size: 16px;
+
+@mixin primary-font {
+    font-family: "Montserrat";
+    color: $primary-color;
+}
+
+* {
+    @include primary-font;
+    box-sizing: border-box;
+}
+
+#app {
+    @include primary-font;
+    max-width: 840px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.app {
+    &__header {
+        font-weight: 800;
+    }
+
+    &__list-wrapper {
+        &__list-element {
+            display: flex;
+            position: relative;
+            right: 20px;
+            padding-left: 20px;
+
+            &.--focused {
+                padding-left: 0px;
+            }
+
+            &__delete-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+
+                position: relative;
+
+                padding: 0;
+                margin: 0;
+                margin-right: 5px;
+                margin-top: 1px;
+
+                height: 15px;
+                width: 15px;
+
+                background: none;
+                border: none;
+
+                cursor: pointer;
+
+                &::after,
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+
+                    background: $button-color;
+
+                    width: 1px;
+                    height: 100%;
+
+                    transform-origin: center center;
+                }
+
+                &::after {
+                    transform: rotate(45deg);
+                }
+
+                &::before {
+                    transform: rotate(-45deg);
+                }
+
+                &:hover {
+                    &::after,
+                    &::before {
+                        background: $primary-color;
+                    }
+                }
+            }
+
+            &__checkbox {
+                flex-shrink: 0;
+                display: block;
+
+                margin: 0;
+                margin-right: 5px;
+                margin-top: 1px;
+
+                height: 15px;
+                width: 15px;
+
+                cursor: pointer;
+            }
+
+            &__textarea {
+                flex-shrink: 1;
+                margin: 0;
+                padding: 0;
+
+                background: none;
+                border: none;
+                outline: none;
+                resize: none;
+                overflow: hidden;
+
+                font-size: $font-size;
+
+                height: 19px;
+                width: 100%;
+
+                &::placeholder {
+                    color: $button-color;
+                }
+
+                &.--completed {
+                    text-decoration: line-through;
+                    color: $unactive-color;
+                }
+            }
+        }
+    }
+
+    &__add-button {
+        color: $button-color;
+        cursor: pointer;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}

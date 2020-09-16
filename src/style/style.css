@@ -1,0 +1,163 @@
+@import url(c:\GitHub\vue-js-todo\src\style\normalize.css);
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/subset-Montserrat-Regular.ttf") format("woff"), url("../fonts/subset-Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/subset-Montserrat-Regular.woff") format("woff"), url("../fonts/subset-Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/subset-Montserrat-ExtraBold.woff") format("woff"), url("../fonts/subset-Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: "Montserrat";
+  color: #404040;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#app {
+  font-family: "Montserrat";
+  color: #404040;
+  max-width: 840px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.app__header {
+  font-weight: 800;
+}
+
+.app__list-wrapper__list-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  right: 20px;
+  padding-left: 20px;
+}
+
+.app__list-wrapper__list-element.--focused {
+  padding-left: 0px;
+}
+
+.app__list-wrapper__list-element__delete-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  margin-right: 5px;
+  margin-top: 1px;
+  height: 15px;
+  width: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.app__list-wrapper__list-element__delete-button::after, .app__list-wrapper__list-element__delete-button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: gray;
+  width: 1px;
+  height: 100%;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.app__list-wrapper__list-element__delete-button::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.app__list-wrapper__list-element__delete-button::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.app__list-wrapper__list-element__delete-button:hover::after, .app__list-wrapper__list-element__delete-button:hover::before {
+  background: #404040;
+}
+
+.app__list-wrapper__list-element__checkbox {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: block;
+  margin: 0;
+  margin-right: 5px;
+  margin-top: 1px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.app__list-wrapper__list-element__textarea {
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  font-size: 16px;
+  height: 19px;
+  width: 100%;
+}
+
+.app__list-wrapper__list-element__textarea::-webkit-input-placeholder {
+  color: gray;
+}
+
+.app__list-wrapper__list-element__textarea:-ms-input-placeholder {
+  color: gray;
+}
+
+.app__list-wrapper__list-element__textarea::-ms-input-placeholder {
+  color: gray;
+}
+
+.app__list-wrapper__list-element__textarea::placeholder {
+  color: gray;
+}
+
+.app__list-wrapper__list-element__textarea.--completed {
+  text-decoration: line-through;
+  color: lightgray;
+}
+
+.app__add-button {
+  color: gray;
+  cursor: pointer;
+}
+
+.app__add-button:hover {
+  color: #404040;
+}
+/*# sourceMappingURL=style.css.map */
