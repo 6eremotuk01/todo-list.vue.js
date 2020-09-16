@@ -33,9 +33,9 @@
 #app {
   font-family: "Montserrat";
   color: #404040;
-  max-width: 840px;
   padding: 20px;
   margin: 0 auto;
+  max-width: 840px;
 }
 
 .app__header {
@@ -48,6 +48,8 @@
   display: flex;
   position: relative;
   right: 20px;
+  margin: 0;
+  margin-top: 10px;
   padding-left: 20px;
 }
 
@@ -76,6 +78,7 @@
   width: 15px;
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
 }
 
@@ -153,6 +156,9 @@
 }
 
 .app__add-button {
+  display: inline-block;
+  margin: 0;
+  margin-top: 10px;
   color: gray;
   cursor: pointer;
 }
